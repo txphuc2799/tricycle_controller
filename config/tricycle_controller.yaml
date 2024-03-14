@@ -1,0 +1,33 @@
+tricycle_controller:
+  publish_rate: 50.0
+  type: "tricycle_controller/TricycleController"
+
+  # Model
+  traction_joint_name: traction_wheel_joint   # Name of traction wheel in URDF
+  steering_joint_name: steer_joint            # Name of steer in URDF
+  wheel_radius: 0.1249555                     # Radius of traction wheel
+  wheel_separation: 1.033809                  # Distance between center of back wheels and traction wheel
+
+  # Odometry
+  odom_frame_id: odom
+  base_frame_id: base_footprint
+  open_loop: false            # If True, uses cmd_vel instead of hardware interface feedback to compute odometry
+  enable_odom_tf: true        # If True, publishes odom<-base_link TF
+  odom_only_twist: false      # If True, publishes on /odom only linear.x and angular.z; Useful for computing odometry in another node, e.g robot_localization's ekf
+  cmd_vel_timeout: 0.5        # Velocity commands will be considered old if they are older than
+  pose_covariance_diagonal:  [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0] # Need to be set if fusing odom with other localization source
+  twist_covariance_diagonal: [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
+  velocity_rolling_window_size: 10  # Rolling window size of rcppmath::RollingMeanAccumulator applied on linear and angular speeds published on odom
+
+  traction:
+    max_velocity: 5.0       # [m/s]
+    max_acceleration: 8.0   
+    max_deceleration: 8.0
+  
+  steering:
+    min_position: -1.57     # [rad]
+    max_position: 1.57 
+    max_velocity: 1.0       # [m/s]
+
+  # Degbug
+  publish_ackermann_command: true   # Publishes AckermannDrive. The speed does not comply to the msg definition, it the wheel angular speed in rad/s.
