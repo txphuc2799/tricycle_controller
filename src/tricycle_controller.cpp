@@ -81,7 +81,6 @@ bool TricycleController::init(hardware_interface::RobotHW* robot_hw,
 {
     typedef hardware_interface::VelocityJointInterface VelIface;
     typedef hardware_interface::PositionJointInterface PosIface;
-    typedef hardware_interface::JointStateInterface StateIface;
 
     // Get multiple types of hardware_interface
     VelIface *vel_joint_if = robot_hw->get<VelIface>(); // vel for traction
