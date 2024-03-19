@@ -61,16 +61,6 @@ public:
      */
     double limit_acceleration(double & p, double p0, double p1, double dt);
 
-    /**
-     * @brief Clam given value to upper and lower limits.
-     * 
-     * @param value Input value that's possibly clamped.
-     * @param lower_limit Lower limit which the value must not exceed.
-     * @param upper_limit Upper limit which the value must not exceed.
-     * @return double Clamped value to range in between [lower_limit, upper_limit].
-     */
-    double clamp(const double& value, const double& lower_limit, const double& upper_limit);
-
 public:
     // Position limits:
     double min_position_;
