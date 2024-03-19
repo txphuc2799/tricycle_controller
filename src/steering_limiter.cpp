@@ -5,6 +5,12 @@
 
 #include <tricycle_controller/steering_limiter.h>
 
+template <typename T>
+T
+clamp(T x, T min, T max)
+{
+    return std::min(std::max(min, x), max);
+}
 
 namespace tricycle_controller
 {
